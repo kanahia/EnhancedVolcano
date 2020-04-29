@@ -1,0 +1,19 @@
+p.volcano.ET.48h.2 <- 
+p.volcano.ET.48h +
+  annotate(geom = "label", 
+           x = 6.5 , 
+           y = max(-log10(volcano.ET.48h$padj)) + 5, 
+           label = paste0("up: ", nrow(dplyr::filter(full_et31_48_pos_neg, padj < 0.05, log2FoldChange > 2) %>%
+                                         dplyr::filter(!is.na(log2FoldChange),!is.na(padj)))), 
+           color = "black", 
+           fill = "lawngreen",
+           size = 4.5) +
+  annotate(geom = "label", 
+           x = -6.5 , 
+           y = max(-log10(volcano.ET.48h$padj)) + 5, 
+           label = paste0("down: ", nrow(dplyr::filter(full_et31_48_pos_neg, 
+                                                       padj < 0.05, log2FoldChange < -2))), 
+           color = "black", 
+           fill = "lightsalmon1",
+           size = 4.5) +
+  coord_fixed(ratio = 0.2)
